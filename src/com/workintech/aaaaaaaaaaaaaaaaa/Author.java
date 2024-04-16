@@ -21,10 +21,10 @@ public class Author {
         return authorID;
     }
 
-    public Author(String name, Set<Book> books) {
+    public Author(String name) {
         this.authorID = counter++;
         this.name = name;
-        this.books = books;
+        this.books = new HashSet<>();
     }
 
     public String getName() {

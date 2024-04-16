@@ -6,19 +6,16 @@ import java.util.Set;
 public class Book{
     private static int counter = 0;
     private long bookID;
-    private Set<Author> author;
+    private Author author;
     private String title;
     private double price;
-    private Status status; //boolean?
-    private int edition;
-    private LocalDateTime dateOfPurchase;
     private Set<Genre> genres;
 
     public static void setCounter(int counter) {
         Book.counter = counter;
     }
 
-    public void setAuthor(Set<Author> author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
@@ -28,18 +25,6 @@ public class Book{
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public void setEdition(int edition) {
-        this.edition = edition;
-    }
-
-    public void setDateOfPurchase(LocalDateTime dateOfPurchase) {
-        this.dateOfPurchase = dateOfPurchase;
     }
 
     public void setGenres(Set<Genre> genres) {
@@ -54,7 +39,7 @@ public class Book{
         return bookID;
     }
 
-    public Set<Author> getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
@@ -66,44 +51,19 @@ public class Book{
         return price;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public int getEdition() {
-        return edition;
-    }
-
-    public LocalDateTime getDateOfPurchase() {
-        return dateOfPurchase;
-    }
 
     public Set<Genre> getGenres() {
         return genres;
     }
 
-    public Book(Set<Author> authors, String title, double price, int edition, LocalDateTime dateOfPurchase, Set<Genre> genres) {
+    public Book(Author author, String title, double price, int edition, LocalDateTime dateOfPurchase, Set<Genre> genres) {
         this.bookID = counter++;
-        this.author = authors;
+        this.author = author;
         this.title = title;
         this.price = price;
-        this.status = Status.IN_LIBRARY;
-        this.edition = edition;
-        this.dateOfPurchase = dateOfPurchase;
         this.genres = genres;
-        for(Author aut : authors){
-            addToAuthor(aut);
-        }
-    }
-
-    private void addToAuthor(Author author){
         author.addBook(this);
     }
-
-    /*
-        this.bookID = UUID.randomUUID();
-        this.status = Status.IN_LIBRARY;
-     */
 
     @Override
     public String toString() {
@@ -112,9 +72,6 @@ public class Book{
                 ", author=" + author +
                 ", title='" + title + '\'' +
                 ", price=" + price +
-                ", status=" + status +
-                ", edition=" + edition +
-                ", dateOfPurchase=" + dateOfPurchase +
                 ", genres=" + genres +
                 '}';
     }
