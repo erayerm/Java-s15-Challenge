@@ -1,4 +1,4 @@
-package com.workintech.aaaaaaaaaaaaaaaaa;
+package com.workintech.book;
 
 public class BookCounts {
     private int totalInLibrary;
@@ -30,6 +30,6 @@ public class BookCounts {
         return "BookCounts{" +
                 "totalInLibrary=" + totalInLibrary +
                 ", totalAvailable=" + totalAvailable +
-                '}';
+                "}\n";
     }
 }

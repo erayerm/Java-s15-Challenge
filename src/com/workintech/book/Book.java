@@ -1,6 +1,8 @@
-package com.workintech.aaaaaaaaaaaaaaaaa;
+package com.workintech.book;
 
-import java.time.LocalDateTime;
+import com.workintech.person.Author;
+
+import java.util.Objects;
 import java.util.Set;
 
 public class Book{
@@ -11,8 +13,13 @@ public class Book{
     private double price;
     private Set<Genre> genres;
 
-    public static void setCounter(int counter) {
-        Book.counter = counter;
+    public Book(Author author, String title, double price, Set<Genre> genres) {
+        this.bookID = counter++;
+        this.author = author;
+        this.title = title;
+        this.price = price;
+        this.genres = genres;
+        author.addBook(this);
     }
 
     public void setAuthor(Author author) {
@@ -46,24 +53,15 @@ public class Book{
     public String getTitle() {
         return title;
     }
-
     public double getPrice() {
         return price;
     }
-
 
     public Set<Genre> getGenres() {
         return genres;
     }
 
-    public Book(Author author, String title, double price, int edition, LocalDateTime dateOfPurchase, Set<Genre> genres) {
-        this.bookID = counter++;
-        this.author = author;
-        this.title = title;
-        this.price = price;
-        this.genres = genres;
-        author.addBook(this);
-    }
+
 
     @Override
     public String toString() {
@@ -73,6 +71,19 @@ public class Book{
                 ", title='" + title + '\'' +
                 ", price=" + price +
                 ", genres=" + genres +
-                '}';
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return bookID == book.bookID;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bookID);
     }
 }

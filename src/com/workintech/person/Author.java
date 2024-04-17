@@ -1,14 +1,15 @@
-package com.workintech.aaaaaaaaaaaaaaaaa;
+package com.workintech.person;
 
-import java.util.HashSet;
+import com.workintech.book.Book;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-public class Author {
+public class Author extends Person {
     private static int counter = 0;
     private long authorID;
     private String name;
-    private Set<Book> books;
+    private List<Book> books;
 
     public static int getCounter() {
         return counter;
@@ -24,14 +25,15 @@ public class Author {
     public Author(String name) {
         this.authorID = counter++;
         this.name = name;
-        this.books = new HashSet<>();
+        this.books = new ArrayList<>();
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
-    public Set<Book> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
